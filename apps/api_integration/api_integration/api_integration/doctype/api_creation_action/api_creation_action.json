@@ -1,0 +1,96 @@
+{
+ "creation": "2020-10-02 14:58:22.140334",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "document_type",
+  "trigger_on",
+  "key",
+  "column_break_4",
+  "is_enqueue",
+  "mappings_section",
+  "field_name_mapping",
+  "field_mapping",
+  "column_break_8",
+  "mapping_explanation"
+ ],
+ "fields": [
+  {
+   "fieldname": "trigger_on",
+   "fieldtype": "Select",
+   "in_list_view": 1,
+   "label": "Action",
+   "options": "\nNew\nSave\nSubmit\nCancel\nDelete",
+   "reqd": 1
+  },
+  {
+   "fieldname": "column_break_4",
+   "fieldtype": "Column Break"
+  },
+  {
+   "default": "0",
+   "description": "Variable cannot be used for other processes if you use enqueue",
+   "fieldname": "is_enqueue",
+   "fieldtype": "Check",
+   "in_list_view": 1,
+   "label": "Is Enqueue"
+  },
+  {
+   "description": "Please read the explanation before filling in the field mapping!",
+   "fieldname": "mappings_section",
+   "fieldtype": "Section Break",
+   "label": "Mappings"
+  },
+  {
+   "depends_on": "eval:doc.trigger_on==\"Save\" || doc.trigger_on == \"New\"",
+   "fieldname": "field_mapping",
+   "fieldtype": "Code",
+   "in_list_view": 1,
+   "label": "Field Mapping"
+  },
+  {
+   "fieldname": "column_break_8",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "mapping_explanation",
+   "fieldtype": "HTML",
+   "label": "Mapping Explanation",
+   "options": "<p style=\"font-size: 11pt; font-weight: bold;\">Explanation</p>\nField mapping contains a list of fields that will be used, either for searching the id of a data or filling data.<br>\n<br>\n<table border=\"1\" style=\"text-align: center;\">\n\t<thead style=\"font-weight: bold;\">\n\t\t<tr>\n\t\t\t<td style=\"padding: 5px;\">\n\t\t\t\tVariable\n\t\t\t</td>\n\t\t\t<td style=\"padding: 5px;\">\n\t\t\t\tOperator\n\t\t\t</td>\n\t\t\t<td style=\"padding: 5px;\">\n\t\t\t\tMeaning\n\t\t\t</td>\n\t\t</tr>\n\t</thead>\n\t<tbody>\n\t\t<tr>\n\t\t\t<td style=\"padding: 5px;\">\n\t\t\t\tKey\n\t\t\t</td>\n\t\t\t<td style=\"padding: 5px;\">\n\t\t\t\t=\n\t\t\t</td>\n\t\t\t<td style=\"padding: 5px;\">\n\t\t\t\tVariable or Fields in this document\n\t\t\t</td>\n\t\t</tr>\n\t\t<tr>\n\t\t\t<td style=\"padding: 5px;\">\n\t\t\t\tValue\n\t\t\t</td>\n\t\t\t<td style=\"padding: 5px;\">\n\t\t\t\t=\n\t\t\t</td>\n\t\t\t<td style=\"padding: 5px;\">\n\t\t\t\tValue that will be used to fill the Key\n\t\t\t</td>\n\t\t</tr>\n\t</tbody>\n</table>\n<br>\n<p style=\"font-size: 11pt; font-weight: bold;\">Mapping Example:</p>\n<table border=\"1\" style=\"background-color: white;\">\n\t<thead style=\"font-weight: bold; text-align: center;\">\n\t\t<tr>\n\t\t\t<td style=\"padding: 5px;\">\n\t\t\t\tField Name Mapping\n\t\t\t</td>\n\t\t\t<td style=\"padding: 5px;\">\n\t\t\t\tField Mapping\n\t\t\t</td>\n\t\t</tr>\n\t</thead>\n\t<tbody>\n\t\t<tr>\n\t\t\t<td style=\"padding: 5px;\">\n\t\t\t\t<pre>\n{\n\t\"name\"\t \t: \"data['doc']['primary_email']\"\n}\n\t\t\t\t</pre>\n\t\t\t\t<b>or</b><br>\n\t\t\t\t<pre>\n{\n\t\"user\" \t\t: \"data['user']['name']\",\n\t\"allow\" \t: \"data['doc']['doctype']\",\n\t\"for_value\" \t: \"data['doc']['name']\"\n}\n\t\t\t\t</pre>\n\t\t\t</td>\n\t\t\t<td style=\"padding: 5px;\">\n\t\t\t\t<pre>\n{\n\t\"name\" \t\t: \"data['doc']['primary_email']\",\n\t\"first_name\" \t: \"str('Michael Aninditya')\",\n\t\"mobile_no\" \t: \"str('081230002222')\",\n\t\"user_image\" \t: \"data['doc']['image']\",\n\t\"description\"\t: \"str(data['doc']['bio']) + str('Swimming')\",\n\t\"qty\"\t\t: \"int(data['doc']['actual_qty']) + int('5')\",\n\t\"grand_total\"\t: \"float(data['doc']['total']) + float(12.5)\"\n}\n\t\t\t\t</pre>\n\t\t\t</td>\n\t\t</tr>\n\t</tbody>\n</table>",
+   "read_only": 1
+  },
+  {
+   "fieldname": "document_type",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Document Type",
+   "options": "DocType",
+   "reqd": 1
+  },
+  {
+   "description": "You can use this key for further processing",
+   "fieldname": "key",
+   "fieldtype": "Data",
+   "label": "Key",
+   "read_only": 1
+  },
+  {
+   "depends_on": "eval:doc.trigger_on==\"Save\" || doc.trigger_on==\"Submit\" || doc.trigger_on==\"Cancel\" || doc.trigger_on==\"Delete\"",
+   "fieldname": "field_name_mapping",
+   "fieldtype": "Code",
+   "in_list_view": 1,
+   "label": "Field Name Mapping"
+  }
+ ],
+ "istable": 1,
+ "links": [],
+ "modified": "2020-11-19 16:33:01.817548",
+ "modified_by": "Administrator",
+ "module": "Api Integration",
+ "name": "API Creation Action",
+ "owner": "Administrator",
+ "permissions": [],
+ "sort_field": "modified",
+ "sort_order": "DESC"
+}

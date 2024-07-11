@@ -1,0 +1,57 @@
+{
+ "creation": "2021-04-09 15:41:05.573419",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "my_server",
+  "section_break_2",
+  "start_batch",
+  "stop_batch"
+ ],
+ "fields": [
+  {
+   "fieldname": "start_batch",
+   "fieldtype": "Button",
+   "label": "Start Batch",
+   "options": "start_batch"
+  },
+  {
+   "fieldname": "stop_batch",
+   "fieldtype": "Button",
+   "label": "Stop Batch",
+   "options": "stop_batch"
+  },
+  {
+   "fieldname": "my_server",
+   "fieldtype": "Data",
+   "label": "My Server"
+  },
+  {
+   "fieldname": "section_break_2",
+   "fieldtype": "Section Break",
+   "label": "Batch Log"
+  }
+ ],
+ "issingle": 1,
+ "modified": "2021-04-09 20:06:08.315191",
+ "modified_by": "Administrator",
+ "module": "Api Integration",
+ "name": "Batch API Tools",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "print": 1,
+   "read": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "quick_entry": 1,
+ "sort_field": "modified",
+ "sort_order": "DESC"
+}

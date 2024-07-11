@@ -1,0 +1,18 @@
+include MANIFEST.in
+include requirements.txt
+include *.json
+include *.md
+include *.py
+include *.txt
+recursive-include overdue_app *.css
+recursive-include overdue_app *.csv
+recursive-include overdue_app *.html
+recursive-include overdue_app *.ico
+recursive-include overdue_app *.js
+recursive-include overdue_app *.json
+recursive-include overdue_app *.md
+recursive-include overdue_app *.png
+recursive-include overdue_app *.py
+recursive-include overdue_app *.svg
+recursive-include overdue_app *.txt
+recursive-exclude overdue_app *.pyc

@@ -1,0 +1,103 @@
+{
+ "actions": [],
+ "creation": "2020-11-19 17:08:10.950625",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "user",
+  "last_login",
+  "last_login_fail_attempt",
+  "max_fail_login_attempt",
+  "device_info_section",
+  "platform",
+  "app_version",
+  "build_number",
+  "phone_brand",
+  "phone_type",
+  "phone_os"
+ ],
+ "fields": [
+  {
+   "fieldname": "user",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Email / username / mobile",
+   "reqd": 1,
+   "set_only_once": 1
+  },
+  {
+   "fieldname": "last_login",
+   "fieldtype": "Datetime",
+   "label": "Last Login"
+  },
+  {
+   "fieldname": "last_login_fail_attempt",
+   "fieldtype": "Int",
+   "label": "Last Login Fail Attempt"
+  },
+  {
+   "fieldname": "max_fail_login_attempt",
+   "fieldtype": "Int",
+   "label": "Max Fail Login Attempt"
+  },
+  {
+   "fieldname": "device_info_section",
+   "fieldtype": "Section Break",
+   "label": "Device Info"
+  },
+  {
+   "fieldname": "platform",
+   "fieldtype": "Data",
+   "label": "Platform"
+  },
+  {
+   "fieldname": "app_version",
+   "fieldtype": "Data",
+   "label": "App Version"
+  },
+  {
+   "fieldname": "build_number",
+   "fieldtype": "Data",
+   "label": "Build Number"
+  },
+  {
+   "fieldname": "phone_brand",
+   "fieldtype": "Data",
+   "label": "Phone Brand"
+  },
+  {
+   "fieldname": "phone_type",
+   "fieldtype": "Data",
+   "label": "Phone Type"
+  },
+  {
+   "fieldname": "phone_os",
+   "fieldtype": "Data",
+   "label": "Phone OS"
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "links": [],
+ "modified": "2020-11-19 17:11:13.620559",
+ "modified_by": "Administrator",
+ "module": "Api Integration",
+ "name": "Login Attempt",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "sort_field": "modified",
+ "sort_order": "DESC"
+}

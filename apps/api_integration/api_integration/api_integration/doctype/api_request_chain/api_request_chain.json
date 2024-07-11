@@ -1,0 +1,67 @@
+{
+ "actions": [],
+ "creation": "2020-04-17 16:22:57.799970",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "api_request",
+  "chain_fields",
+  "key_replace",
+  "key_pair",
+  "body",
+  "response"
+ ],
+ "fields": [
+  {
+   "fieldname": "api_request",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "API Request",
+   "options": "API Request",
+   "reqd": 1
+  },
+  {
+   "description": "&lt;key&gt;: get from key-value list last response&lt;/key&gt;",
+   "fieldname": "body",
+   "fieldtype": "HTML Editor",
+   "ignore_xss_filter": 1,
+   "label": "Body"
+  },
+  {
+   "fieldname": "response",
+   "fieldtype": "HTML Editor",
+   "label": "Response"
+  },
+  {
+   "description": "<b>[Key Source]:[Key Target] </b><br>\nKey Source -&gt; from what field  (can fill parameter)<br>\nKey Target -&gt; which field is the same <br>\n<i>For example</i> user:name -&gt; then user will lookup for name in Doctype User <br> \nor - accepted:status\n\n",
+   "fieldname": "key_pair",
+   "fieldtype": "HTML Editor",
+   "label": "Key Pair"
+  },
+  {
+   "description": "<b> [Key Replace] </b> is replace field that exist/non-exist in api response of the parent.",
+   "fieldname": "key_replace",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Key Replace",
+   "reqd": 1
+  },
+  {
+   "fieldname": "chain_fields",
+   "fieldtype": "Long Text",
+   "label": "Chain Fields"
+  }
+ ],
+ "istable": 1,
+ "links": [],
+ "modified": "2020-11-19 16:33:11.007260",
+ "modified_by": "Administrator",
+ "module": "Api Integration",
+ "name": "API Request Chain",
+ "owner": "Administrator",
+ "permissions": [],
+ "quick_entry": 1,
+ "sort_field": "modified",
+ "sort_order": "DESC"
+}

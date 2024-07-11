@@ -1,0 +1,133 @@
+{
+ "autoname": "field:identifier",
+ "beta": 1,
+ "creation": "2020-10-02 14:53:50.237486",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "identifier",
+  "enabled",
+  "filters_section",
+  "document_type",
+  "column_break_5",
+  "trigger_on",
+  "section_break_7",
+  "body",
+  "column_break_9",
+  "body_explanation",
+  "actions_section",
+  "actions",
+  "testing_section",
+  "run",
+  "response"
+ ],
+ "fields": [
+  {
+   "fieldname": "identifier",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Identifier",
+   "reqd": 1,
+   "unique": 1
+  },
+  {
+   "fieldname": "body",
+   "fieldtype": "Code",
+   "label": "Body"
+  },
+  {
+   "fieldname": "actions_section",
+   "fieldtype": "Section Break",
+   "label": "Actions"
+  },
+  {
+   "fieldname": "actions",
+   "fieldtype": "Table",
+   "label": "Actions",
+   "options": "API Creation Action"
+  },
+  {
+   "fieldname": "testing_section",
+   "fieldtype": "Section Break",
+   "label": "Testing"
+  },
+  {
+   "fieldname": "run",
+   "fieldtype": "Button",
+   "label": "Run"
+  },
+  {
+   "fieldname": "response",
+   "fieldtype": "Code",
+   "label": "Response"
+  },
+  {
+   "fieldname": "filters_section",
+   "fieldtype": "Section Break",
+   "label": "Filters"
+  },
+  {
+   "default": "1",
+   "fieldname": "enabled",
+   "fieldtype": "Check",
+   "label": "Enabled"
+  },
+  {
+   "fieldname": "column_break_5",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "trigger_on",
+   "fieldtype": "Select",
+   "label": "Trigger On",
+   "options": "\nNew\nSave\nSubmit\nCancel\nDelete",
+   "reqd": 1
+  },
+  {
+   "fieldname": "section_break_7",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "column_break_9",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "body_explanation",
+   "fieldtype": "HTML",
+   "label": "Body Explanation",
+   "options": "<b>Body Examples:</b><br>\n<table>\n\t<tbody>\n\t\t<tr>\n\t\t\t<td style=\"padding: 5px;\">\n\t\t\t\t<pre>\n{<br>\n\t\"customer_name\"\t: \"Mark Zuckerberg\",<br>\n\t\"email\"\t: \"mark@fb.com\"<br>\n}\n\t\t\t\t</pre>\n\t\t\t</td>\n\t\t</tr>\n\t</tbody>\n</table>",
+   "read_only": 1
+  },
+  {
+   "fieldname": "document_type",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Document Type",
+   "options": "DocType",
+   "reqd": 1
+  }
+ ],
+ "modified": "2020-11-19 16:08:16.036344",
+ "modified_by": "Administrator",
+ "module": "Api Integration",
+ "name": "API Creation",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "title_field": "identifier"
+}

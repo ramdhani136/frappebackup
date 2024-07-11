@@ -1,0 +1,218 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "autoname": "field:identifier",
+ "creation": "2020-04-16 15:20:24.232013",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "identifier",
+  "doc_action",
+  "validate_permission",
+  "document",
+  "column_break_3",
+  "order_by",
+  "page",
+  "limit",
+  "section_break_5",
+  "using_fixed_field",
+  "fields",
+  "variables",
+  "and_filters",
+  "or_filters",
+  "sql",
+  "request_chain_section",
+  "api_request_chain",
+  "testing_section",
+  "test_api",
+  "response",
+  "finalize_section",
+  "lock",
+  "description"
+ ],
+ "fields": [
+  {
+   "fieldname": "identifier",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Identifier",
+   "reqd": 1,
+   "unique": 1
+  },
+  {
+   "fieldname": "doc_action",
+   "fieldtype": "Select",
+   "in_list_view": 1,
+   "label": "Doc Action",
+   "options": "frappe.get_list\nfrappe.get_all\nfrappe.get_doc\nfrappe.get_single\nfrappe.db.sql\nmethod"
+  },
+  {
+   "description": "Related document.",
+   "fieldname": "document",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Document",
+   "options": "DocType",
+   "reqd": 1
+  },
+  {
+   "depends_on": "eval:(doc.doc_action == \"frappe.get_list\" \n    || doc.doc_action == \"frappe.get_all\"\n    || doc.doc_action == \"frappe.get_doc\"\n    || doc.doc_action == \"frappe.get_doc_json\"\n)",
+   "description": "{ &lt;key&gt;: [&lt;operator&gt;, &lt;value&gt;] }\n<br>\nkey -&gt; fieldname\n<br>\noperator -&gt; &lt;, &gt;, =, !=, IN, NOT IN, BETWEEN\n<br>\nvalue -&gt; can be single or  array&lt;/value&gt;&lt;/operator&gt;&lt;/key&gt;\n<br>\n<br>\nStandard Variables:\n&lt;now&gt; = frappe.utils.now()\n&lt;today&gt; = frappe.utils.today()&lt;/today&gt;&lt;/now&gt;",
+   "fieldname": "and_filters",
+   "fieldtype": "HTML Editor",
+   "ignore_xss_filter": 1,
+   "label": "And Filters"
+  },
+  {
+   "depends_on": "eval:(doc.doc_action == \"frappe.get_list\" \n    || doc.doc_action == \"frappe.get_all\"\n)",
+   "description": "{ &lt;key&gt;: [&lt;operator&gt;, &lt;value&gt;] }\n<br>\nkey -&gt; fieldname\n<br>\noperator -&gt; &lt;, &gt;, =, !=, IN, NOT IN, BETWEEN\n<br>\nvalue -&gt; can be single or  array&lt;/value&gt;&lt;/operator&gt;&lt;/key&gt;",
+   "fieldname": "or_filters",
+   "fieldtype": "HTML Editor",
+   "ignore_xss_filter": 1,
+   "label": "Or Filters"
+  },
+  {
+   "depends_on": "eval:(doc.doc_action=='frappe.db.sql')",
+   "fieldname": "sql",
+   "fieldtype": "HTML Editor",
+   "ignore_xss_filter": 1,
+   "label": "SQL"
+  },
+  {
+   "default": "modified DESC",
+   "fieldname": "order_by",
+   "fieldtype": "Data",
+   "label": "Order By"
+  },
+  {
+   "fieldname": "testing_section",
+   "fieldtype": "Section Break",
+   "label": "Testing"
+  },
+  {
+   "fieldname": "response",
+   "fieldtype": "HTML Editor",
+   "label": "Response"
+  },
+  {
+   "description": "This button will call function <b> read </b> on API Request.<br>\nSimulating response when called on REST Client.",
+   "fieldname": "test_api",
+   "fieldtype": "Button",
+   "label": "Test API",
+   "options": "test_api"
+  },
+  {
+   "depends_on": "eval:doc.doc_action != 'frappe.get_single'",
+   "description": "Please separate it with \\n (new line) and separate with : to add default value\nexample:<br>\ncustomer:C-000123<br>\nbooking_from:2019-01-01<br>\nbooking_to:2020-01-01<br>",
+   "fieldname": "variables",
+   "fieldtype": "Text",
+   "ignore_xss_filter": 1,
+   "label": "Variables"
+  },
+  {
+   "description": "Want to call another API Request?? I am the answer \ud83e\udd70",
+   "fieldname": "request_chain_section",
+   "fieldtype": "Section Break",
+   "label": "Request Chain"
+  },
+  {
+   "fieldname": "api_request_chain",
+   "fieldtype": "Table",
+   "label": "API Request Chain",
+   "options": "API Request Chain"
+  },
+  {
+   "fieldname": "column_break_3",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "section_break_5",
+   "fieldtype": "Section Break"
+  },
+  {
+   "default": "0",
+   "description": "Check this to lock this document.<br>\nIf it done to develop and used. \u00af\\_(\u30c4)_/\u00af",
+   "fieldname": "lock",
+   "fieldtype": "Check",
+   "in_list_view": 1,
+   "label": "Lock"
+  },
+  {
+   "default": "0",
+   "description": "Check this box, if want to override response field.<br>\nThen fill on fields (separated by <b>comma</b>\ud83d\ude09.",
+   "fieldname": "using_fixed_field",
+   "fieldtype": "Check",
+   "label": "Using Fixed Field"
+  },
+  {
+   "default": "name",
+   "depends_on": "eval:doc.using_fixed_field == 1",
+   "fieldname": "fields",
+   "fieldtype": "Small Text",
+   "label": "Fields"
+  },
+  {
+   "default": "0",
+   "depends_on": "eval:doc.doc_action == \"frappe.db.sql\"",
+   "description": "Support only <b>frappe.db.sql</b> \ud83d\udc4d",
+   "fieldname": "validate_permission",
+   "fieldtype": "Check",
+   "label": "Validate Permission"
+  },
+  {
+   "fieldname": "page",
+   "fieldtype": "Int",
+   "label": "Page"
+  },
+  {
+   "default": "20",
+   "fieldname": "limit",
+   "fieldtype": "Int",
+   "label": "Limit"
+  },
+  {
+   "depends_on": "eval:doc.lock == 0",
+   "fieldname": "description",
+   "fieldtype": "Small Text",
+   "label": "Description"
+  },
+  {
+   "fieldname": "finalize_section",
+   "fieldtype": "Section Break",
+   "label": "Finalize Section"
+  }
+ ],
+ "links": [],
+ "modified": "2020-08-03 14:17:18.555641",
+ "modified_by": "Administrator",
+ "module": "Api Integration",
+ "name": "API Request",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  },
+  {
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "Guest",
+   "share": 1
+  }
+ ],
+ "search_fields": "lock,identifier,document",
+ "sort_field": "modified",
+ "sort_order": "DESC"
+}

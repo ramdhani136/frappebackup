@@ -1,0 +1,194 @@
+# -*- coding: utf-8 -*-
+# Copyright (c) 2017, Frappe Technologies Pvt. Ltd. and contributors
+# For license information, please see license.txt
+
+from __future__ import unicode_literals
+import frappe
+from frappe.model.document import Document
+from dateutil.relativedelta import relativedelta
+from frappe.utils import cint, flt, nowdate, add_days, getdate, fmt_money, add_to_date, DATE_FORMAT, date_diff
+from frappe import _
+from erpnext.accounts.utils import get_fiscal_year
+from erpnext.hr.doctype.employee.employee import get_holiday_list_for_employee
+import json
+from erpnext.hr.doctype.payroll_entry.payroll_entry import PayrollEntry
+
+def create_salary_slips_custom(self):
+	"""
+		Creates salary slip for selected employees if already not created
+	"""
+	self.check_permission('write')
+	self.created = 1
+	emp_list = [d.employee for d in get_emp_list_custom(self)]
+	
+	if emp_list:
+		args = frappe._dict({
+			"salary_slip_based_on_timesheet": self.salary_slip_based_on_timesheet,
+			"payroll_frequency": self.payroll_frequency,
+			"start_date": self.start_date,
+			"end_date": self.end_date,
+			"company": self.company,
+			"posting_date": self.posting_date,
+			"deduct_tax_for_unclaimed_employee_benefits": self.deduct_tax_for_unclaimed_employee_benefits,
+			"deduct_tax_for_unsubmitted_tax_exemption_proof": self.deduct_tax_for_unsubmitted_tax_exemption_proof,
+			"payroll_entry": self.name
+		})
+		if len(emp_list) > 30:
+			frappe.enqueue(create_salary_slips_for_employees_custom, timeout=600, employees=emp_list, args=args)
+		else:
+			create_salary_slips_for_employees_custom(emp_list, args, publish_progress=False)
+			# since this method is called via frm.call this doc needs to be updated manually
+			self.reload()
+
+def create_salary_slips_for_employees_custom(employees, args, publish_progress=True):
+	salary_slips_exists_for = get_existing_salary_slips(employees, args)
+	count=0
+	for emp in employees:
+		if emp not in salary_slips_exists_for:
+			args.update({
+				"doctype": "Salary Slip",
+				"employee": emp
+			})
+			ss = frappe.get_doc(args)
+			get_attendance = frappe.db.sql(""" SELECT work_period, forget_to_checkout, paid_leave, late_count 
+				FROM `tabPayroll Employee Detail` WHERE parent = "{}" and employee = "{}" """.format(args.payroll_entry,args.employee))
+			
+			if len(get_attendance) > 0:
+				ss.work_period = get_attendance[0][0]
+				ss.forget_to_checkout = get_attendance[0][1]
+				ss.paid_leave = get_attendance[0][2]
+				ss.late_count = get_attendance[0][3]
+
+			ss.insert()
+			count+=1
+			if publish_progress:
+				frappe.publish_progress(count*100/len(set(employees) - set(salary_slips_exists_for)),
+					title = _("Creating Salary Slips..."))
+
+	payroll_entry = frappe.get_doc("Payroll Entry", args.payroll_entry)
+	payroll_entry.db_set("salary_slips_created", 1)
+	payroll_entry.notify_update()
+
+def get_existing_salary_slips(employees, args):
+	return frappe.db.sql_list("""
+		select distinct employee from `tabSalary Slip`
+		where docstatus!= 2 and company = %s
+			and start_date >= %s and end_date <= %s
+			and employee in (%s)
+	""" % ('%s', '%s', '%s', ', '.join(['%s']*len(employees))),
+		[args.company, args.start_date, args.end_date] + employees)
+
+@frappe.whitelist()
+def override_create_slip(doc,method):
+	PayrollEntry.create_salary_slips = create_salary_slips_custom
+
+@frappe.whitelist()
+def fill_employee_details(self):
+	self = frappe.get_doc(json.loads(self))
+	self.set('employees', [])
+	employees = get_emp_list_custom(self)
+	if not employees:
+		frappe.throw(_("No employees for the mentioned criteria"))
+
+	for d in employees:
+		if d.employee:
+			self.append('employees', d)
+
+	self.number_of_employees = len(employees)
+	
+	if not self.employees:
+		frappe.throw(_("No employees for the mentioned criteria"))
+
+	self.save()
+	self.reload()
+
+	if self.validate_attendance:
+		return self.validate_employee_attendance()
+
+@frappe.whitelist()
+def get_emp_list_custom(self):
+	"""
+		Returns list of active employees based on selected criteria
+		and for which salary structure exists
+	"""
+	condition = ''
+
+	cond = get_filter_condition_custom(self)
+	cond += get_joining_relieving_condition_custom(self)
+
+	
+	if self.payroll_frequency:
+		condition = """and payroll_frequency = '%(payroll_frequency)s'"""% {"payroll_frequency": self.payroll_frequency}
+
+	sal_struct = frappe.db.sql_list("""
+			select
+				name from `tabSalary Structure`
+			where
+				docstatus = 1 and
+				is_active = 'Yes'
+				and company = %(company)s and
+				ifnull(salary_slip_based_on_timesheet,0) = %(salary_slip_based_on_timesheet)s
+				{condition}""".format(condition=condition),
+			{"company": self.company, "salary_slip_based_on_timesheet":self.salary_slip_based_on_timesheet})
+
+	if sal_struct:
+		start_date = self.start_date
+		end_date = self.end_date
+		
+		cond += " "
+		cond += ""
+
+		emp_list = frappe.db.sql("""
+			SELECT DISTINCT t1.name AS employee, t1.employee_name, t1.department, t1.designation, 
+				DATEDIFF("{0}",t1.date_of_joining) AS work_period, 
+				COUNT(DISTINCT ta1.name) AS late_count, 
+				COUNT(DISTINCT ta2.name) AS forget_to_checkout,
+				COUNT(DISTINCT ta3.name) AS paid_leave 
+
+				FROM `tabEmployee` t1 LEFT JOIN `tabAttendance` ta1 ON ta1.`employee` = t1.`name` 
+				AND ta1.`late_entry` = 1 AND ta1.`status` = "Present" 
+				AND ta1.attendance_date >= "{1}" 
+				AND ta1.attendance_date <= "{0}"
+				 AND ta1.docstatus = 1 
+				 LEFT JOIN `tabAttendance` ta2 ON ta2.`employee` = t1.`name` AND ta2.`forgot_to_checkout` = 1 AND ta2.`status` = "Present" 
+				 AND ta2.attendance_date >= "{1}" AND ta2.attendance_date <= "{0}" AND ta2.docstatus = 1 
+				 
+				 LEFT JOIN `tabAttendance` ta3 ON ta3.`employee` = t1.`name` 
+				 AND ta3.`status` = "On Leave" AND ta3.attendance_date >= "{1}" 
+				 AND ta3.attendance_date <= "{0}" AND ta3.docstatus = 1 
+				 AND ta3.leave_type IN (SELECT NAME FROM `tabLeave Type` WHERE is_lwp = 0)
+				 , 
+				 
+				 `tabSalary Structure Assignment` t2 WHERE t1.name = t2.employee AND t2.docstatus = 1 
+				AND t2.salary_structure IN {2}
+				 AND "{0}" >= t2.from_date 
+
+				 {3}
+				 GROUP BY t1.name
+				 ORDER BY t2.from_date DESC
+
+		""".format(end_date, start_date, str(sal_struct).replace("[","(").replace("]",")"), cond), as_dict=True)
+
+		return emp_list
+
+def get_filter_condition_custom(self):
+	check_mandatory_custom(self)
+
+	cond = ''
+	for f in ['company', 'branch', 'department', 'designation']:
+		if self.get(f):
+			cond += " and t1." + f + " = '" + self.get(f).replace("'", "\'") + "'"
+
+	return cond
+
+def get_joining_relieving_condition_custom(self):
+	cond = """
+		and ifnull(t1.date_of_joining, '0000-00-00') <= '%(end_date)s'
+		and ifnull(t1.relieving_date, '2199-12-31') >= '%(start_date)s'
+	""" % {"start_date": self.start_date, "end_date": self.end_date}
+	return cond
+
+def check_mandatory_custom(self):
+	for fieldname in ['company', 'start_date', 'end_date']:
+		if not self.get(fieldname):
+			frappe.throw(_("Please set {0}").format(self.meta.get_label(fieldname)))

@@ -1,0 +1,152 @@
+{
+ "autoname": "format:ALOG{MM}{###}{YY}{DD}",
+ "creation": "2020-06-04 11:44:07.376809",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "status_code",
+  "main_information_section",
+  "url",
+  "method",
+  "args",
+  "headers",
+  "data",
+  "more_information_section",
+  "cookies",
+  "path",
+  "host",
+  "all_request_data_section",
+  "request_data",
+  "response_or_error_section",
+  "response",
+  "error",
+  "references_section",
+  "batch_api_log"
+ ],
+ "fields": [
+  {
+   "fieldname": "url",
+   "fieldtype": "Long Text",
+   "in_list_view": 1,
+   "label": "URL"
+  },
+  {
+   "fieldname": "method",
+   "fieldtype": "Data",
+   "label": "Method"
+  },
+  {
+   "fieldname": "response",
+   "fieldtype": "Long Text",
+   "label": "Response"
+  },
+  {
+   "fieldname": "cookies",
+   "fieldtype": "Long Text",
+   "label": "Cookies"
+  },
+  {
+   "fieldname": "error",
+   "fieldtype": "Long Text",
+   "label": "Error"
+  },
+  {
+   "fieldname": "status_code",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Status Code",
+   "read_only": 1,
+   "search_index": 1
+  },
+  {
+   "fieldname": "main_information_section",
+   "fieldtype": "Section Break",
+   "label": "Main Information",
+   "read_only": 1
+  },
+  {
+   "fieldname": "args",
+   "fieldtype": "Long Text",
+   "label": "Args"
+  },
+  {
+   "fieldname": "headers",
+   "fieldtype": "Long Text",
+   "label": "Headers"
+  },
+  {
+   "fieldname": "data",
+   "fieldtype": "Long Text",
+   "label": "Data"
+  },
+  {
+   "fieldname": "more_information_section",
+   "fieldtype": "Section Break",
+   "label": "More Information",
+   "read_only": 1
+  },
+  {
+   "fieldname": "path",
+   "fieldtype": "Data",
+   "label": "Path"
+  },
+  {
+   "fieldname": "host",
+   "fieldtype": "Data",
+   "label": "Host"
+  },
+  {
+   "fieldname": "all_request_data_section",
+   "fieldtype": "Section Break",
+   "label": "All Request Data",
+   "read_only": 1
+  },
+  {
+   "fieldname": "request_data",
+   "fieldtype": "Long Text",
+   "label": "Request Data"
+  },
+  {
+   "fieldname": "response_or_error_section",
+   "fieldtype": "Section Break",
+   "label": "Response or Error",
+   "read_only": 1
+  },
+  {
+   "fieldname": "references_section",
+   "fieldtype": "Section Break",
+   "label": "References"
+  },
+  {
+   "fieldname": "batch_api_log",
+   "fieldtype": "Link",
+   "label": "Batch API Log",
+   "options": "Batch API Log",
+   "read_only": 1
+  }
+ ],
+ "in_create": 1,
+ "modified": "2021-04-19 11:03:57.388643",
+ "modified_by": "Administrator",
+ "module": "Api Integration",
+ "name": "API Log",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "title_field": "method"
+}

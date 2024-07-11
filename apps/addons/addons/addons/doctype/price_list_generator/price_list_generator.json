@@ -1,0 +1,218 @@
+{
+ "autoname": "PLG-.MM.YY.-.#####",
+ "creation": "2021-02-08 16:40:46.651759",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "filter_by",
+  "cb_01",
+  "price_list",
+  "tipe_price_list",
+  "filter_uom",
+  "keterangan",
+  "section_break_7",
+  "parent_item_group",
+  "item_group",
+  "history_item_group",
+  "section_break_12",
+  "item_code_table",
+  "min_price_items_section",
+  "minimum_price_items",
+  "set_value_section",
+  "customer",
+  "supplier",
+  "valid_from_date",
+  "valid_to_date",
+  "cb_02",
+  "rate",
+  "amended_from",
+  "item_code",
+  "item_name"
+ ],
+ "fields": [
+  {
+   "fieldname": "filter_by",
+   "fieldtype": "Select",
+   "in_list_view": 1,
+   "label": "Filter By",
+   "options": "Item Code\nItem Group"
+  },
+  {
+   "description": "Bisa diisi ketika Item Group yang dimasukkan adalah Parent Item Group, jika parent terisi dan child kosong, semua yang dibawah parent Item Group akan tergenerate Price Listnya ketika Approve.",
+   "fieldname": "item_group",
+   "fieldtype": "Link",
+   "hidden": 1,
+   "label": "Child Item Group",
+   "options": "Item Group"
+  },
+  {
+   "fieldname": "price_list",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Price List",
+   "options": "Price List",
+   "reqd": 1
+  },
+  {
+   "fieldname": "tipe_price_list",
+   "fieldtype": "Select",
+   "label": "Tipe Price List",
+   "options": "\nSelling\nBuying",
+   "read_only": 1
+  },
+  {
+   "depends_on": "eval:doc.tipe_price_list == \"Selling\"",
+   "fieldname": "customer",
+   "fieldtype": "Link",
+   "label": "Customer",
+   "options": "Customer"
+  },
+  {
+   "depends_on": "eval:doc.tipe_price_list == \"Buying\"",
+   "fieldname": "supplier",
+   "fieldtype": "Link",
+   "label": "Supplier",
+   "options": "Supplier"
+  },
+  {
+   "description": "Untuk Filter by Item Group, mengikuti default Item UOM jika dikosongkan.",
+   "fieldname": "filter_uom",
+   "fieldtype": "Link",
+   "label": "Filter UOM",
+   "options": "UOM"
+  },
+  {
+   "fieldname": "valid_from_date",
+   "fieldtype": "Date",
+   "label": "Valid From Date"
+  },
+  {
+   "fieldname": "valid_to_date",
+   "fieldtype": "Date",
+   "label": "Valid To Date"
+  },
+  {
+   "fieldname": "amended_from",
+   "fieldtype": "Link",
+   "label": "Amended From",
+   "no_copy": 1,
+   "options": "Price List Generator",
+   "print_hide": 1,
+   "read_only": 1
+  },
+  {
+   "fieldname": "rate",
+   "fieldtype": "Currency",
+   "label": "Rate",
+   "reqd": 1
+  },
+  {
+   "fieldname": "cb_01",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "set_value_section",
+   "fieldtype": "Section Break",
+   "label": "Set Value"
+  },
+  {
+   "fieldname": "cb_02",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "parent_item_group",
+   "fieldtype": "Link",
+   "label": "Item Group",
+   "options": "Item Group"
+  },
+  {
+   "fieldname": "keterangan",
+   "fieldtype": "Text",
+   "label": "Keterangan",
+   "read_only": 1
+  },
+  {
+   "depends_on": "eval:doc.filter_by == \"Item Code\"",
+   "fieldname": "item_code_table",
+   "fieldtype": "Table",
+   "label": "Item Code Table",
+   "options": "Price List Generator Item"
+  },
+  {
+   "depends_on": "eval:doc.filter_by == \"Item Group\"",
+   "fieldname": "history_item_group",
+   "fieldtype": "Currency",
+   "label": "History Item Group",
+   "read_only": 1
+  },
+  {
+   "depends_on": "eval:doc.filter_by == \"Item Code\"",
+   "fieldname": "section_break_12",
+   "fieldtype": "Section Break"
+  },
+  {
+   "depends_on": "eval:doc.filter_by == \"Item Code\"",
+   "fieldname": "min_price_items_section",
+   "fieldtype": "Section Break",
+   "label": "Min Price Items"
+  },
+  {
+   "fieldname": "minimum_price_items",
+   "fieldtype": "Table",
+   "label": "Minimum Price Items",
+   "options": "Price List Generator Min Price",
+   "read_only": 1
+  },
+  {
+   "depends_on": "eval:doc.filter_by == \"Item Group\"",
+   "fieldname": "section_break_7",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "item_code",
+   "fieldtype": "Link",
+   "hidden": 1,
+   "label": "Item Code",
+   "no_copy": 1,
+   "options": "Item",
+   "print_hide": 1,
+   "read_only": 1,
+   "report_hide": 1
+  },
+  {
+   "fieldname": "item_name",
+   "fieldtype": "Data",
+   "hidden": 1,
+   "label": "Item Name",
+   "no_copy": 1,
+   "print_hide": 1,
+   "read_only": 1,
+   "report_hide": 1
+  }
+ ],
+ "is_submittable": 1,
+ "modified": "2021-05-04 18:30:57.928344",
+ "modified_by": "dev@das.com",
+ "module": "addons",
+ "name": "Price List Generator",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "submit": 1,
+   "write": 1
+  }
+ ],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "track_changes": 1
+}

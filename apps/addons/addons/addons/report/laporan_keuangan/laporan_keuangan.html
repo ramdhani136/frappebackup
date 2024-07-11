@@ -1,0 +1,154 @@
+{%
+	var report_columns = report.get_columns_for_print();
+	report_columns = report_columns.filter(col => !col.hidden);
+
+	if (report_columns.length > 8) {
+		frappe.throw(__("Too many columns. Export the report and print it using a spreadsheet application."));
+	}
+%}
+
+<style>
+	.financial-statements-important td {
+		font-weight: bold;
+	}
+
+	.financial-statements-blank-row td {
+		height: 37px;
+	}
+</style>
+
+<h2 class="text-center">{%= filters.company %} 
+	<br> NERACA 
+	<br> {%= filters.from_fiscal_year %} - {%= filters.to_fiscal_year %} - {%= filters.periodicity %}
+</h2>
+{% if 'cost_center' in filters %}
+	<h3 class="text-center">{%= filters.cost_center %}</h3>
+{% endif %}
+
+<h3 class="text-center">{%= filters.fiscal_year %}</h3>
+
+{% if (filters.from_date) { %}
+	<h5 class="text-center">
+		{%= frappe.datetime.str_to_user(filters.from_date) %} - {%= frappe.datetime.str_to_user(filters.to_date) %}
+	</h5>
+{% } %}
+<hr>
+<table class="table" style="font-size:75%!important">
+	<colgroup>
+       <col style="width:50%">
+       <col style="width:50%">
+    </colgroup>
+    <tr>
+        <td class="text-left" style="border-top:none!important;border-left:none!important;border-right:none!important;border-bottom:none!important;padding-top: 20px!important;padding: 0px!important">
+	        <table class="table">
+				<thead>
+					<tr>
+						<th style="width: {%= 100 - (report_columns.length - 1) * 13 %}%"></th>
+						{% for (let i=1, l=report_columns.length; i<l; i++) { %}
+							<th class="text-right">{%= report_columns[i].label %}</th>
+						{% } %}
+					</tr>
+				</thead>
+				<tbody>
+					{% for(let j=0, k=data.length; j<k; j++) { %}
+						{%
+							var row = data[j];
+							var row_class = data[j].parent_account ? "" : "financial-statements-important";
+							row_class += data[j].account_name ? "" : " financial-statements-blank-row";
+						%}
+						
+						<tr class="{%= row_class %}">
+							{% if (cint(data[j].indent > 0)) { %}
+							 <td class="text-left" style="border-top:none!important;border-left:none!important;border-right:none!important;border-bottom:none!important;padding-top: 20px!important;padding: 0px!important">
+							 	{% if (row.account_name){ %}
+							 	{% if (row.account_name.startsWith("1") || row.account_name.indexOf("Total Asset") > -1) { %} 							 	
+								<span style="padding-left: {%= cint(data[j].indent) * 2 %}em">{%= row.account_name %}</span>
+								{% } %}
+								{% } %}
+							</td>
+
+							{% } else { %}
+							<td class="text-center" style="border-top:none!important;border-left:none!important;border-right:none!important;border-bottom:none!important;padding-top: 20px!important;padding: 0px!important">	
+								{% if (row.account_name) { %}
+								{% if (row.account_name.startsWith("1") || row.account_name.indexOf("Total Asset") > -1) { %} 
+								<span style="padding-left: {%= cint(data[j].indent) * 2 %}em">{%= row.account_name %}</span>
+								{% } %}
+								{% } %}
+							</td>
+							{% } %}
+							{% for(let i=1, l=report_columns.length; i<l; i++) { %}
+								 <td class="text-right" style="border-top:none!important;border-left:none!important;border-right:none!important;border-bottom:none!important;padding-top: 20px!important;padding: 0px!important">
+								 	{% if (row.account_name) { %}
+									{% if (row.account_name.startsWith("1") || row.account_name.indexOf("Total Asset") > -1 ) { %} 
+									
+									{% const fieldname = report_columns[i].fieldname; %}
+									{% if (!is_null(row[fieldname])) { %}
+										{%= frappe.format(row[fieldname], report_columns[i], {}, row).replace("Rp","") %}
+									{% } %}
+
+									{% } %}
+									{% } %}
+								</td>
+							{% } %}
+						</tr>
+
+					{% } %}
+				</tbody>
+			</table>
+     	</td>
+       <td class="text-left" style="border-top:none!important;border-left:none!important;border-right:none!important;border-bottom:none!important;padding-top: 20px!important;padding: 0px!important">
+	        <table class="table">
+				<thead>
+					<tr>
+						<th style="width: {%= 100 - (report_columns.length - 1) * 13 %}%"></th>
+						{% for (let i=1, l=report_columns.length; i<l; i++) { %}
+							<th class="text-right">{%= report_columns[i].label %}</th>
+						{% } %}
+					</tr>
+				</thead>
+				<tbody>
+					{% for(let j=0, k=data.length; j<k; j++) { %}
+						{%
+							var row = data[j];
+							var row_class = data[j].parent_account ? "" : "financial-statements-important";
+							row_class += data[j].account_name ? "" : " financial-statements-blank-row";
+						%}
+						
+						{% if (row.account_name){ %}
+						{% if ((row.account_name.startsWith("2") || row.account_name.startsWith("3") || row.account_name.indexOf("Total") > -1) && row.account_name.indexOf("Total Asset") == -1) { %} 					
+						<tr class="{%= row_class %}">
+							{% if (cint(data[j].indent > 0)) { %}
+							 <td class="text-left" style="border-top:none!important;border-left:none!important;border-right:none!important;border-bottom:none!important;padding-top: 20px!important;padding: 0px!important">
+							 			 	
+								<span style="padding-left: {%= cint(data[j].indent) * 2 %}em">{%= row.account_name %}</span>
+								
+							</td>
+
+							{% } else { %}
+							<td class="text-center" style="border-top:none!important;border-left:none!important;border-right:none!important;border-bottom:none!important;padding-top: 20px!important;padding: 0px!important">	
+								
+								<span style="padding-left: {%= cint(data[j].indent) * 2 %}em">{%= row.account_name %}</span>
+								
+							</td>
+							{% } %}
+							{% for(let i=1, l=report_columns.length; i<l; i++) { %}
+								 <td class="text-right" style="border-top:none!important;border-left:none!important;border-right:none!important;border-bottom:none!important;padding-top: 20px!important;padding: 0px!important">
+								 	
+									{% const fieldname = report_columns[i].fieldname; %}
+									{% if (!is_null(row[fieldname])) { %}
+										{%= frappe.format(row[fieldname], report_columns[i], {}, row).replace("Rp","") %}
+									{% } %}
+
+									
+								</td>
+							{% } %}
+						</tr>
+						{% } %}
+						{% } %}
+
+					{% } %}
+				</tbody>
+			</table>
+		</td>
+	</tr>
+</table>

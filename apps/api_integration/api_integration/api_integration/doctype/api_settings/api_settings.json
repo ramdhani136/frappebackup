@@ -1,0 +1,54 @@
+{
+ "actions": [],
+ "creation": "2020-10-02 14:09:18.856592",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "configuration_section",
+  "enable_api_log",
+  "enable_api_bin"
+ ],
+ "fields": [
+  {
+   "fieldname": "configuration_section",
+   "fieldtype": "Section Break",
+   "label": "Configuration"
+  },
+  {
+   "default": "0",
+   "depends_on": "eval:doc.enable_api_log == 1",
+   "fieldname": "enable_api_bin",
+   "fieldtype": "Check",
+   "label": "Enable API Bin"
+  },
+  {
+   "default": "1",
+   "fieldname": "enable_api_log",
+   "fieldtype": "Check",
+   "label": "Enable API Log"
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "issingle": 1,
+ "links": [],
+ "modified": "2021-03-03 15:57:19.832356",
+ "modified_by": "Administrator",
+ "module": "Api Integration",
+ "name": "API Settings",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "print": 1,
+   "read": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "sort_field": "modified",
+ "sort_order": "DESC"
+}

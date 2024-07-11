@@ -1,0 +1,116 @@
+{
+ "actions": [],
+ "creation": "2020-10-02 08:41:56.523534",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "uniqueness_differentiator_section",
+  "user",
+  "token",
+  "column_break_4",
+  "url",
+  "data",
+  "more_information_section",
+  "last_request_on",
+  "status_log_section",
+  "success",
+  "column_break_9",
+  "failed"
+ ],
+ "fields": [
+  {
+   "fieldname": "uniqueness_differentiator_section",
+   "fieldtype": "Section Break",
+   "label": "Uniqueness Differentiator"
+  },
+  {
+   "fieldname": "user",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "User",
+   "read_only": 1
+  },
+  {
+   "fieldname": "token",
+   "fieldtype": "Data",
+   "label": "Token",
+   "read_only": 1
+  },
+  {
+   "fieldname": "column_break_4",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "url",
+   "fieldtype": "Text",
+   "in_list_view": 1,
+   "label": "URL",
+   "read_only": 1
+  },
+  {
+   "fieldname": "data",
+   "fieldtype": "Long Text",
+   "label": "Data",
+   "read_only": 1
+  },
+  {
+   "fieldname": "status_log_section",
+   "fieldtype": "Section Break",
+   "label": "Status Log"
+  },
+  {
+   "fieldname": "success",
+   "fieldtype": "Int",
+   "in_list_view": 1,
+   "label": "Success",
+   "read_only": 1
+  },
+  {
+   "fieldname": "column_break_9",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "failed",
+   "fieldtype": "Int",
+   "in_list_view": 1,
+   "label": "Failed",
+   "read_only": 1
+  },
+  {
+   "fieldname": "more_information_section",
+   "fieldtype": "Section Break",
+   "label": "More Information"
+  },
+  {
+   "fieldname": "last_request_on",
+   "fieldtype": "Datetime",
+   "label": "Last Request On",
+   "read_only": 1
+  }
+ ],
+ "in_create": 1,
+ "links": [],
+ "modified": "2020-11-19 17:11:48.381482",
+ "modified_by": "Administrator",
+ "module": "Api Integration",
+ "name": "API Bin",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "title_field": "url"
+}

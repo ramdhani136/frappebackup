@@ -1,0 +1,45 @@
+{
+ "add_total_row": 0,
+ "columns": [],
+ "creation": "2023-01-06 18:10:00.999603",
+ "disable_prepared_report": 0,
+ "disabled": 0,
+ "docstatus": 0,
+ "doctype": "Report",
+ "filters": [],
+ "idx": 0,
+ "is_standard": "Yes",
+ "letter_head": "",
+ "modified": "2023-01-06 18:10:00.999603",
+ "modified_by": "Administrator",
+ "module": "addons",
+ "name": "Gross Profit Old",
+ "owner": "Administrator",
+ "prepared_report": 0,
+ "ref_doctype": "GL Entry",
+ "report_name": "Gross Profit Old",
+ "report_type": "Script Report",
+ "roles": [
+  {
+   "role": "Finance Acounting Manager"
+  },
+  {
+   "role": "AR/AP Staff"
+  },
+  {
+   "role": "Audit Staff"
+  },
+  {
+   "role": "FIRST TOP"
+  },
+  {
+   "role": "Accounting SPV"
+  },
+  {
+   "role": "AR/AP Coordinator"
+  },
+  {
+   "role": "Kasir"
+  }
+ ]
+}

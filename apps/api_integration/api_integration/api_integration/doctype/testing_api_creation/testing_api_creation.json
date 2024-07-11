@@ -1,0 +1,77 @@
+{
+ "allow_rename": 1,
+ "creation": "2020-10-06 16:25:54.697897",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "field1",
+  "field2",
+  "field3",
+  "status",
+  "testing_api_creation_child",
+  "amended_from"
+ ],
+ "fields": [
+  {
+   "fieldname": "field1",
+   "fieldtype": "Data",
+   "label": "field1"
+  },
+  {
+   "fieldname": "field2",
+   "fieldtype": "Data",
+   "label": "field2"
+  },
+  {
+   "fieldname": "field3",
+   "fieldtype": "Data",
+   "label": "field3"
+  },
+  {
+   "fieldname": "status",
+   "fieldtype": "Select",
+   "in_list_view": 1,
+   "in_preview": 1,
+   "label": "Status",
+   "options": "In Review\nApproved\nRejected\nCancelled"
+  },
+  {
+   "fieldname": "amended_from",
+   "fieldtype": "Link",
+   "label": "Amended From",
+   "no_copy": 1,
+   "options": "Testing API Creation",
+   "print_hide": 1,
+   "read_only": 1
+  },
+  {
+   "fieldname": "testing_api_creation_child",
+   "fieldtype": "Table",
+   "label": "Testing API Creation Child",
+   "options": "Testing API Creation Child"
+  }
+ ],
+ "is_submittable": 1,
+ "modified": "2020-11-19 20:07:33.613454",
+ "modified_by": "Administrator",
+ "module": "Api Integration",
+ "name": "Testing API Creation",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "sort_field": "modified",
+ "sort_order": "DESC"
+}

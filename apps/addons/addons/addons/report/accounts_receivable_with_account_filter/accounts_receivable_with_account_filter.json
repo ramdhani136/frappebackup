@@ -1,0 +1,91 @@
+{
+ "add_total_row": 1,
+ "creation": "2021-06-07 16:46:34.591580",
+ "disable_prepared_report": 0,
+ "disabled": 0,
+ "docstatus": 0,
+ "doctype": "Report",
+ "idx": 0,
+ "is_standard": "Yes",
+ "letter_head": "Tanda Terima Faktur Asli",
+ "modified": "2021-06-07 16:46:34.591580",
+ "modified_by": "Administrator",
+ "module": "addons",
+ "name": "Accounts Receivable with Account Filter",
+ "owner": "Administrator",
+ "prepared_report": 0,
+ "ref_doctype": "Sales Invoice",
+ "report_name": "Accounts Receivable with Account Filter",
+ "report_type": "Script Report",
+ "roles": [
+  {
+   "role": "AR/AP Staff"
+  },
+  {
+   "role": "Finance Acounting Manager"
+  },
+  {
+   "role": "Fakturin Staff"
+  },
+  {
+   "role": "Accounting SPV"
+  },
+  {
+   "role": "Sales Support"
+  },
+  {
+   "role": "FIRST TOP"
+  },
+  {
+   "role": "Sales And Marketing Manager"
+  },
+  {
+   "role": "PDIC SPV"
+  },
+  {
+   "role": "Distribution Staff"
+  },
+  {
+   "role": "Production Staff"
+  },
+  {
+   "role": "Distribution Support"
+  },
+  {
+   "role": "Inventory Control Support"
+  },
+  {
+   "role": "Inventory Control Staff"
+  },
+  {
+   "role": "AR/AP Coordinator"
+  },
+  {
+   "role": "AR/AP Support"
+  },
+  {
+   "role": "Collector"
+  },
+  {
+   "role": "Sales Group"
+  },
+  {
+   "role": "Purchase Staff"
+  },
+  {
+   "role": "Sales Coordinator"
+  },
+  {
+   "role": "Sales SPV"
+  },
+  {
+   "role": "Sales Executive"
+  },
+  {
+   "role": "Stocker Coordinator"
+  },
+  {
+   "role": "Warehouse SPV"
+  }
+ ]
+}

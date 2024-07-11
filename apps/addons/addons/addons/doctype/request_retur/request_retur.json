@@ -1,0 +1,126 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "autoname": "naming_series:",
+ "creation": "2021-04-16 11:54:14.076126",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "naming_series",
+  "document_type",
+  "document_name",
+  "posting_date",
+  "items",
+  "keterangan",
+  "amended_from",
+  "section_tanda_tangan_section",
+  "dibuat_oleh",
+  "dibuat_oleh_datetime",
+  "diapprove_oleh",
+  "diapprove_oleh_datetime"
+ ],
+ "fields": [
+  {
+   "fieldname": "document_type",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Document Type",
+   "options": "DocType",
+   "reqd": 1
+  },
+  {
+   "fieldname": "document_name",
+   "fieldtype": "Dynamic Link",
+   "label": "Document Name",
+   "options": "document_type",
+   "reqd": 1
+  },
+  {
+   "fieldname": "posting_date",
+   "fieldtype": "Date",
+   "label": "Posting Date",
+   "reqd": 1
+  },
+  {
+   "fieldname": "items",
+   "fieldtype": "Table",
+   "label": "Items",
+   "options": "Request Retur Items",
+   "reqd": 1
+  },
+  {
+   "fieldname": "amended_from",
+   "fieldtype": "Link",
+   "label": "Amended From",
+   "no_copy": 1,
+   "options": "Request Retur",
+   "print_hide": 1,
+   "read_only": 1
+  },
+  {
+   "fieldname": "keterangan",
+   "fieldtype": "Text",
+   "label": "Keterangan"
+  },
+  {
+   "fieldname": "section_tanda_tangan_section",
+   "fieldtype": "Section Break",
+   "label": "Section Tanda Tangan"
+  },
+  {
+   "fieldname": "dibuat_oleh",
+   "fieldtype": "Data",
+   "label": "Dibuat Oleh",
+   "read_only": 1
+  },
+  {
+   "fieldname": "dibuat_oleh_datetime",
+   "fieldtype": "Datetime",
+   "label": "Dibuat Oleh Datetime",
+   "read_only": 1
+  },
+  {
+   "fieldname": "diapprove_oleh",
+   "fieldtype": "Data",
+   "label": "Diapprove Oleh",
+   "read_only": 1
+  },
+  {
+   "fieldname": "diapprove_oleh_datetime",
+   "fieldtype": "Datetime",
+   "label": "Diapprove Oleh Datetime",
+   "read_only": 1
+  },
+  {
+   "fieldname": "naming_series",
+   "fieldtype": "Select",
+   "label": "Series",
+   "options": "RTR-.YYYY.-.MM.-.#####"
+  }
+ ],
+ "is_submittable": 1,
+ "links": [],
+ "modified": "2023-09-22 08:40:38.173976",
+ "modified_by": "Administrator",
+ "module": "addons",
+ "name": "Request Retur",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "cancel": 1,
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "print": 1,
+   "read": 1,
+   "role": "System Manager",
+   "share": 1,
+   "submit": 1,
+   "write": 1
+  }
+ ],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "track_changes": 1
+}

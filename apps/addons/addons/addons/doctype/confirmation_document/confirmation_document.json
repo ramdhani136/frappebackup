@@ -1,0 +1,309 @@
+{
+ "actions": [],
+ "autoname": "format:{singkatan}{document_number}",
+ "creation": "2021-04-05 17:34:03.920670",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "checker_centang_section",
+  "in_1",
+  "in_2",
+  "in_3",
+  "in_4",
+  "in_5",
+  "section_break_7",
+  "document_type",
+  "singkatan",
+  "chosen_type",
+  "document_number",
+  "get_data",
+  "column_break_6",
+  "tipe_stock",
+  "customer",
+  "supplier",
+  "is_return",
+  "catatan",
+  "section_break_11",
+  "transporter",
+  "driver",
+  "lr_no",
+  "vehicle_no",
+  "col_break34",
+  "transporter_name",
+  "driver_name",
+  "lr_date",
+  "item_section_section",
+  "items",
+  "pr_item_section_section",
+  "catatan_pr",
+  "pr_items",
+  "amended_from"
+ ],
+ "fields": [
+  {
+   "fieldname": "checker_centang_section",
+   "fieldtype": "Section Break",
+   "hidden": 1,
+   "label": "Checker Centang",
+   "no_copy": 1,
+   "read_only": 1
+  },
+  {
+   "default": "0",
+   "fieldname": "in_1",
+   "fieldtype": "Check",
+   "hidden": 1,
+   "label": "In 1",
+   "no_copy": 1,
+   "read_only": 1
+  },
+  {
+   "default": "0",
+   "fieldname": "in_2",
+   "fieldtype": "Check",
+   "hidden": 1,
+   "label": "In 2",
+   "no_copy": 1,
+   "read_only": 1
+  },
+  {
+   "default": "0",
+   "fieldname": "in_3",
+   "fieldtype": "Check",
+   "hidden": 1,
+   "label": "In 3",
+   "no_copy": 1,
+   "read_only": 1
+  },
+  {
+   "default": "0",
+   "fieldname": "in_4",
+   "fieldtype": "Check",
+   "hidden": 1,
+   "label": "In 4",
+   "no_copy": 1,
+   "read_only": 1
+  },
+  {
+   "default": "0",
+   "fieldname": "in_5",
+   "fieldtype": "Check",
+   "hidden": 1,
+   "label": "In 5",
+   "no_copy": 1,
+   "read_only": 1
+  },
+  {
+   "fieldname": "section_break_7",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "document_type",
+   "fieldtype": "Select",
+   "label": "Document Type",
+   "options": "\nDelivery Note\nPurchase Receipt\nStock Entry"
+  },
+  {
+   "fieldname": "singkatan",
+   "fieldtype": "Select",
+   "hidden": 1,
+   "label": "Singkatan",
+   "options": "DN-\nPR-\nSTE-",
+   "read_only": 1
+  },
+  {
+   "fieldname": "chosen_type",
+   "fieldtype": "Link",
+   "hidden": 1,
+   "label": "Chosen Type",
+   "options": "DocType",
+   "read_only": 1
+  },
+  {
+   "fieldname": "document_number",
+   "fieldtype": "Dynamic Link",
+   "label": "Document Number",
+   "options": "chosen_type"
+  },
+  {
+   "depends_on": "eval:doc.document_type != \"\"",
+   "fieldname": "get_data",
+   "fieldtype": "Button",
+   "label": "Get Data"
+  },
+  {
+   "fieldname": "column_break_6",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "tipe_stock",
+   "fieldtype": "Select",
+   "label": "Tipe Stock",
+   "no_copy": 1,
+   "options": "\nIn\nOut",
+   "print_hide": 1,
+   "read_only": 1,
+   "report_hide": 1
+  },
+  {
+   "depends_on": "eval:doc.document_type == \"Delivery Note\"",
+   "fieldname": "customer",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Customer",
+   "no_copy": 1,
+   "options": "Customer",
+   "print_hide": 1,
+   "read_only": 1,
+   "report_hide": 1
+  },
+  {
+   "depends_on": "eval:doc.document_type == \"Purchase Receipt\"",
+   "fieldname": "supplier",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Supplier",
+   "no_copy": 1,
+   "options": "Supplier",
+   "print_hide": 1,
+   "read_only": 1,
+   "report_hide": 1
+  },
+  {
+   "fieldname": "is_return",
+   "fieldtype": "Select",
+   "label": "Is Return",
+   "no_copy": 1,
+   "options": "\nYes\nNo",
+   "print_hide": 1,
+   "read_only": 1,
+   "report_hide": 1
+  },
+  {
+   "fetch_from": "document_number.catatan",
+   "fieldname": "catatan",
+   "fieldtype": "Long Text",
+   "label": "Catatan"
+  },
+  {
+   "depends_on": "eval:doc.chosen_type == \"Delivery Note\"",
+   "fieldname": "section_break_11",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "transporter",
+   "fieldtype": "Link",
+   "label": "Transporter",
+   "options": "Supplier",
+   "read_only": 1
+  },
+  {
+   "fieldname": "driver",
+   "fieldtype": "Link",
+   "label": "Driver",
+   "options": "Driver",
+   "read_only": 1
+  },
+  {
+   "fieldname": "lr_no",
+   "fieldtype": "Data",
+   "label": "Transport Receipt No",
+   "read_only": 1
+  },
+  {
+   "fieldname": "vehicle_no",
+   "fieldtype": "Data",
+   "label": "Vehicle No",
+   "read_only": 1
+  },
+  {
+   "fieldname": "col_break34",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "transporter_name",
+   "fieldtype": "Data",
+   "label": "Transporter Name",
+   "read_only": 1
+  },
+  {
+   "fieldname": "driver_name",
+   "fieldtype": "Data",
+   "label": "Driver Name",
+   "read_only": 1
+  },
+  {
+   "fieldname": "lr_date",
+   "fieldtype": "Date",
+   "label": "Transport Receipt Date",
+   "read_only": 1
+  },
+  {
+   "depends_on": "eval:doc.tipe_stock == \"Out\"",
+   "fieldname": "item_section_section",
+   "fieldtype": "Section Break",
+   "label": "Item Section"
+  },
+  {
+   "depends_on": "eval:doc.tipe_stock == \"Out\"",
+   "fieldname": "items",
+   "fieldtype": "Table",
+   "label": "Items",
+   "options": "Confirmation Document Item"
+  },
+  {
+   "depends_on": "eval:doc.tipe_stock == \"In\"",
+   "fieldname": "pr_item_section_section",
+   "fieldtype": "Section Break",
+   "label": "PR Item Section"
+  },
+  {
+   "fieldname": "catatan_pr",
+   "fieldtype": "Data",
+   "label": "Catatan PR"
+  },
+  {
+   "depends_on": "eval:doc.tipe_stock == \"In\"",
+   "fieldname": "pr_items",
+   "fieldtype": "Table",
+   "label": "PR Items",
+   "options": "Confirmation Document Item PR"
+  },
+  {
+   "fieldname": "amended_from",
+   "fieldtype": "Link",
+   "label": "Amended From",
+   "no_copy": 1,
+   "options": "Confirmation Document",
+   "print_hide": 1,
+   "read_only": 1
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "is_submittable": 1,
+ "links": [],
+ "modified": "2022-10-22 23:33:34.508930",
+ "modified_by": "Administrator",
+ "module": "addons",
+ "name": "Confirmation Document",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "quick_entry": 1,
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "track_changes": 1
+}

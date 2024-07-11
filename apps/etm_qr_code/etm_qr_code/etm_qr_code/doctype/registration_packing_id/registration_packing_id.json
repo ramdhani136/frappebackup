@@ -1,0 +1,167 @@
+{
+ "actions": [],
+ "autoname": "naming_series:",
+ "creation": "2022-08-22 19:35:37.886227",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "naming_series",
+  "id_packing",
+  "purchase_receipt",
+  "item",
+  "item_name",
+  "conversion",
+  "stock_uom",
+  "uom_packing",
+  "column_break_9",
+  "qr_code",
+  "qr_image",
+  "status_in_out_section",
+  "is_in",
+  "is_in_name",
+  "column_break_15",
+  "is_out",
+  "is_out_name"
+ ],
+ "fields": [
+  {
+   "fetch_from": "item.item_name",
+   "fieldname": "item_name",
+   "fieldtype": "Read Only",
+   "in_list_view": 1,
+   "label": "Item Name"
+  },
+  {
+   "fieldname": "conversion",
+   "fieldtype": "Float",
+   "in_list_view": 1,
+   "label": "Conversion",
+   "reqd": 1
+  },
+  {
+   "fetch_from": "item.stock_uom",
+   "fieldname": "stock_uom",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "in_standard_filter": 1,
+   "label": "Stock UOM",
+   "options": "UOM",
+   "read_only": 1,
+   "reqd": 1
+  },
+  {
+   "fieldname": "uom_packing",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "in_standard_filter": 1,
+   "label": "UOM Packing",
+   "options": "UOM",
+   "reqd": 1
+  },
+  {
+   "fieldname": "id_packing",
+   "fieldtype": "Data",
+   "label": "ID Packing",
+   "read_only": 1
+  },
+  {
+   "default": "0",
+   "fieldname": "is_in",
+   "fieldtype": "Check",
+   "label": "is In"
+  },
+  {
+   "default": "0",
+   "fieldname": "is_out",
+   "fieldtype": "Check",
+   "label": "is Out"
+  },
+  {
+   "fieldname": "item",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "in_standard_filter": 1,
+   "label": "Item",
+   "options": "Item",
+   "reqd": 1
+  },
+  {
+   "fieldname": "qr_code",
+   "fieldtype": "Attach Image",
+   "label": "QR Code",
+   "read_only": 1
+  },
+  {
+   "fieldname": "qr_image",
+   "fieldtype": "Image",
+   "label": "QR Code",
+   "options": "qr_code"
+  },
+  {
+   "fieldname": "column_break_9",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "purchase_receipt",
+   "fieldtype": "Link",
+   "label": "Purchase Receipt",
+   "options": "Purchase Receipt"
+  },
+  {
+   "depends_on": "eval:doc.is_in==1",
+   "fieldname": "is_in_name",
+   "fieldtype": "Link",
+   "label": "Is In Name",
+   "options": "Confirmation Document",
+   "read_only": 1
+  },
+  {
+   "fieldname": "status_in_out_section",
+   "fieldtype": "Section Break",
+   "label": "Status In Out",
+   "read_only": 1
+  },
+  {
+   "fieldname": "column_break_15",
+   "fieldtype": "Column Break"
+  },
+  {
+   "depends_on": "eval:doc.is_out==1",
+   "fieldname": "is_out_name",
+   "fieldtype": "Link",
+   "label": "Is Out Name",
+   "options": "Confirmation Document",
+   "read_only": 1
+  },
+  {
+   "fieldname": "naming_series",
+   "fieldtype": "Select",
+   "label": "Naming Series"
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "links": [],
+ "modified": "2022-11-03 16:11:51.187841",
+ "modified_by": "Administrator",
+ "module": "ETM QR Code",
+ "name": "Registration Packing ID",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "track_changes": 1
+}

@@ -1,0 +1,18 @@
+include MANIFEST.in
+include requirements.txt
+include *.json
+include *.md
+include *.py
+include *.txt
+recursive-include makeup *.css
+recursive-include makeup *.csv
+recursive-include makeup *.html
+recursive-include makeup *.ico
+recursive-include makeup *.js
+recursive-include makeup *.json
+recursive-include makeup *.md
+recursive-include makeup *.png
+recursive-include makeup *.py
+recursive-include makeup *.svg
+recursive-include makeup *.txt
+recursive-exclude makeup *.pyc

@@ -1,0 +1,18 @@
+include MANIFEST.in
+include requirements.txt
+include *.json
+include *.md
+include *.py
+include *.txt
+recursive-include etm_qr_code *.css
+recursive-include etm_qr_code *.csv
+recursive-include etm_qr_code *.html
+recursive-include etm_qr_code *.ico
+recursive-include etm_qr_code *.js
+recursive-include etm_qr_code *.json
+recursive-include etm_qr_code *.md
+recursive-include etm_qr_code *.png
+recursive-include etm_qr_code *.py
+recursive-include etm_qr_code *.svg
+recursive-include etm_qr_code *.txt
+recursive-exclude etm_qr_code *.pyc

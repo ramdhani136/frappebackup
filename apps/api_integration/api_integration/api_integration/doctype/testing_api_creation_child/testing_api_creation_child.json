@@ -1,0 +1,49 @@
+{
+ "creation": "2020-11-19 16:33:41.681083",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "field1",
+  "field2",
+  "int1",
+  "float1"
+ ],
+ "fields": [
+  {
+   "fieldname": "field1",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "field1"
+  },
+  {
+   "fieldname": "field2",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "field2"
+  },
+  {
+   "fieldname": "int1",
+   "fieldtype": "Int",
+   "in_list_view": 1,
+   "label": "int1"
+  },
+  {
+   "fieldname": "float1",
+   "fieldtype": "Float",
+   "in_list_view": 1,
+   "label": "float1"
+  }
+ ],
+ "istable": 1,
+ "modified": "2020-11-19 16:33:41.681083",
+ "modified_by": "Administrator",
+ "module": "Api Integration",
+ "name": "Testing API Creation Child",
+ "owner": "Administrator",
+ "permissions": [],
+ "quick_entry": 1,
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "track_changes": 1
+}

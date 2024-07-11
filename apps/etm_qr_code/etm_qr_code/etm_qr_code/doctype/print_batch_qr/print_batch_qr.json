@@ -1,0 +1,74 @@
+{
+ "actions": [],
+ "creation": "2022-08-25 14:43:52.137969",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "print",
+  "pilih_data",
+  "list_registration_packing_id",
+  "ambil_data",
+  "data_yang_akan_di_print_section",
+  "print_registration_packing_id"
+ ],
+ "fields": [
+  {
+   "fieldname": "print",
+   "fieldtype": "Section Break",
+   "label": "Input Registration Packing ID"
+  },
+  {
+   "fieldname": "print_registration_packing_id",
+   "fieldtype": "Table",
+   "label": "Registration Packing ID",
+   "options": "Print Batch QR Registration Packing ID Child",
+   "read_only": 1
+  },
+  {
+   "description": "<b style=\"color: #2490ef;\">Catatan: </b><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Berfungsi untuk memindahkan List Registration Packing ID di atas \n<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ke section Data Yang Akan Di Print.",
+   "fieldname": "ambil_data",
+   "fieldtype": "Button",
+   "label": "Ambil Data"
+  },
+  {
+   "fieldname": "data_yang_akan_di_print_section",
+   "fieldtype": "Section Break",
+   "label": "Data Yang Akan Di Print"
+  },
+  {
+   "description": "<b style=\"color: #2490ef;\">Catatan: </b><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Registration Packing ID yang ingin di print dipisah dengan menggunakan enter.<br>\n<b style=\"color: #2490ef;\">Cara Pengisian: </b><br>\n&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;RPI-0000000001 <br>\n&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;RPI-0000000002",
+   "fieldname": "list_registration_packing_id",
+   "fieldtype": "Small Text",
+   "label": "List Registration Packing ID"
+  },
+  {
+   "description": "<b style=\"color: #2490ef;\">Catatan: </b><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Berfungsi untuk mempermudah memilih data yang akan di print. \n<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Data yang dipilih nantinya akan masuk ke List Registration Packing ID.",
+   "fieldname": "pilih_data",
+   "fieldtype": "Button",
+   "label": "Pilih Data"
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "issingle": 1,
+ "links": [],
+ "modified": "2022-08-30 17:02:07.651734",
+ "modified_by": "Administrator",
+ "module": "ETM QR Code",
+ "name": "Print Batch QR",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "print": 1,
+   "read": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "sort_field": "modified",
+ "sort_order": "DESC"
+}

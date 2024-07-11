@@ -1,0 +1,39 @@
+{
+ "add_total_row": 0,
+ "creation": "2021-02-01 15:16:36.616761",
+ "disable_prepared_report": 0,
+ "disabled": 0,
+ "docstatus": 0,
+ "doctype": "Report",
+ "idx": 0,
+ "is_standard": "Yes",
+ "modified": "2021-02-01 15:16:51.061437",
+ "modified_by": "Administrator",
+ "module": "addons",
+ "name": "Minimum Stock By Item Group",
+ "owner": "Administrator",
+ "prepared_report": 0,
+ "ref_doctype": "Item Group",
+ "report_name": "Minimum Stock By Item Group",
+ "report_type": "Script Report",
+ "roles": [
+  {
+   "role": "Stock Manager"
+  },
+  {
+   "role": "Stock User"
+  },
+  {
+   "role": "Item Manager"
+  },
+  {
+   "role": "Sales User"
+  },
+  {
+   "role": "Purchase User"
+  },
+  {
+   "role": "Accounts User"
+  }
+ ]
+}
